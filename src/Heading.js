@@ -1,12 +1,12 @@
 import React from "react";
-import { render } from "react-dom";
 
 const Heading = () => {
   return (
     <header className="App-header">
       <img
         src="https://image.flaticon.com/icons/svg/139/139899.svg"
-        className="App-logo "
+        className="App-logo"
+        alt="logo"
       />{" "}
       CYF Hotel
     </header>

@@ -1,25 +1,42 @@
 import React from "react";
-import CostumerRow from "./CostumerRow";
-//Each booking will have an id, title, first name, surname,email, room id, check in date and check out date.
-const SearchResults = () => {
+import moment from "moment";
+
+const SearchResults = props => {
   return (
-    <table class="table">
+    <table className="table table-striped">
       <thead>
         <tr>
-          <th scope="col">id</th>
-          <th scope="col">title</th>
-          <th scope="col">first name</th>
-          <th scope="col">surname</th>
-          <th scope="col">email</th>
-          <th scope="col">room id</th>
-          <th scope="col">check in</th>
-          <th scope="col">check out</th>
+          <th>ID</th>
+          <th>Title</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Check in date</th>
+          <th>Check out date</th>
+          <th>Day's Q-ty</th>
         </tr>
       </thead>
       <tbody>
-        <CostumerRow />
+        {props.results.map(result => {
+          const checkInDate = moment(result.checkInDate);
+          const checkOutDate = moment(result.checkOutDate);
+          const dayCalculation = checkOutDate.diff(checkInDate, "days");
+          return (
+            <tr key={result.id}>
+              <td>{result.id}</td>
+              <td>{result.title}</td>
+              <td>{result.firstName}</td>
+              <td>{result.surname}</td>
+              <td>{result.email}</td>
+              <td>{result.checkInDate}</td>
+              <td>{result.checkOutDate}</td>
+              <td>{dayCalculation}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
 };
+
 export default SearchResults;
