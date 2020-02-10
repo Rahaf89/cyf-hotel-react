@@ -1,42 +1,52 @@
 import React from "react";
-import moment from "moment";
+import RowResult from "./RowResult";
 
-const SearchResults = props => {
-  return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Email</th>
-          <th>Check in date</th>
-          <th>Check out date</th>
-          <th>Day's Q-ty</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.results.map(result => {
-          const checkInDate = moment(result.checkInDate);
-          const checkOutDate = moment(result.checkOutDate);
-          const dayCalculation = checkOutDate.diff(checkInDate, "days");
-          return (
-            <tr key={result.id}>
-              <td>{result.id}</td>
-              <td>{result.title}</td>
-              <td>{result.firstName}</td>
-              <td>{result.surname}</td>
-              <td>{result.email}</td>
-              <td>{result.checkInDate}</td>
-              <td>{result.checkOutDate}</td>
-              <td>{dayCalculation}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
-};
+class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: this.props.results.map(item => false)
+    };
+  }
+  handleRowSelect = index => {
+    this.setState(previousState => {
+      return {
+        selected: previousState.selected.map((element, i) =>
+          i == index ? !element : element
+        )
+      };
+    });
+    console.log("Row selected");
+  };
+
+  render() {
+    const results = this.props.results.map((booking, index) => (
+      <RowResult
+        onSelect={() => this.handleRowSelect(index)}
+        key={booking.id}
+        result={booking}
+        selected={this.state.selected[index]}
+      />
+    ));
+
+    console.log(results);
+
+    return (
+      <table className="table">
+        {" "}
+        <thead>
+          {" "}
+          <tr>
+            {" "}
+            <th> id </th> <th> title </th> <th> firstName </th>{" "}
+            <th> surname </th> <th> email </th> <th> roomId </th>{" "}
+            <th> checkInDate </th> <th> checkOutDate </th> <th> staying </th>{" "}
+          </tr>{" "}
+        </thead>{" "}
+        <tbody> {results} </tbody>{" "}
+      </table>
+    );
+  }
+}
 
 export default SearchResults;

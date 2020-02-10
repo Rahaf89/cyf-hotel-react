@@ -1,17 +1,18 @@
 import React from "react";
-
-const Restaurant = () => {
-  const pizzas = 0;
-  return (
-    <div>
-      <h3>Restaurant Orders</h3>
-      <ul>
-        <li>
-          Pizzas: {pizzas} <button className="btn btn-primary">Add</button>
-        </li>
-      </ul>
-    </div>
-  );
-};
+import Order from "./Order.js";
+class Restaurant extends React.Component {
+  render() {
+    return (
+      <div>
+        {" "}
+        <h3> Restaurant Orders </h3>{" "}
+        <ul>
+          {" "}
+          <Order orderType="pizzas" /> <Order orderType="Saladas" />{" "}
+        </ul>{" "}
+      </div>
+    );
+  }
+}
 
 export default Restaurant;
