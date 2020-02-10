@@ -4,6 +4,7 @@ import Clock from "./Clock";
 const Heading = () => {
   return (
     <div>
+      {" "}
       <header className="App-header">
         {" "}
         <img
@@ -11,7 +12,7 @@ const Heading = () => {
           className="App-logo"
           alt="logo"
         />{" "}
-        CYF{" "}
+        CYF_Hotel{" "}
       </header>{" "}
       <Clock />{" "}
     </div>
