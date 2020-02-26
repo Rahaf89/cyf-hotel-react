@@ -2,12 +2,14 @@ import React from "react";
 import SearchButton from "./SearchButton";
 
 class Search extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      searchInput: "",
-      value: ""
+      searchInput: ""
     };
+  }
+  handleSearchInput(event) {
+    this.setState({ searchInput: event.target.value });
   }
 
   render() {
@@ -22,18 +24,30 @@ class Search extends React.Component {
           {" "}
           <div className="col">
             {" "}
-            <form className="form-group search-box">
+            <form
+              className="form-group search-box"
+              onSubmit={event => {
+                event.preventDefault();
+                this.props.search(this.state.searchInput);
+              }}
+            >
               {" "}
               <label htmlFor="customerName"> Customer name </label>{" "}
               <div className="search-row">
                 {" "}
                 <input
+                  onChange={event => this.handleSearchInput(event)}
                   type="text"
                   id="customerName"
                   className="form-control"
                   placeholder="Customer Id"
                 />{" "}
-                <SearchButton />{" "}
+                <input
+                  type="submit"
+                  value="Search IDs"
+                  className="btn btn-primary"
+                />{" "}
+                {/* <SearchButton />  */}{" "}
               </div>{" "}
             </form>{" "}
           </div>{" "}
