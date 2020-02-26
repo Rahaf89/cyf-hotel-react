@@ -15,7 +15,11 @@ function RowResult(props) {
       <td> {result.firstName} </td> <td> {result.surname} </td>{" "}
       <td> {result.email} </td> <td> {result.roomId} </td>{" "}
       <td> {result.checkInDate} </td> <td> {result.checkOutDate} </td>{" "}
-      <td> {staying} </td> <button onClick={props.onSelect}> select </button>{" "}
+      <td> {staying} </td>{" "}
+      <td>
+        {" "}
+        <button onClick={props.onSelect}> select </button>{" "}
+      </td>{" "}
     </tr>
   );
 }
